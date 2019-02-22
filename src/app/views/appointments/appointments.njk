@@ -1,0 +1,33 @@
+{% extends "_layouts/default.njk"%}
+
+{% block body %}
+  <div class="content">
+    <strong>Olá, {{ user.name }}</strong>
+    <p>Veja abaixo, os agendamentos do dia:</p>
+
+    <ul class="providers">
+      {% if appointments.length === 0 %}
+        <center>
+          <h4>Sem agendamentos por hoje.</h4>
+        </center>
+        <br>
+      {% endif %}
+
+      {% for appointment in appointments %}
+        <li class="provider">
+          <div>
+            <img src="/files/{{ appointment.user.avatar }}" alt="Avatar">
+            <strong>{{ appointment.user.name }}</strong>
+          </div>
+          <center>
+            Hora: {{ appointment.hour }}
+          </center>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <a href="/app/dashboard" class="btn">Voltar</a>
+    <br>
+    <a href="/app/logout" class="logout">Sair</a>
+  </div>
+{% endblock %}
